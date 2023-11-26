@@ -3,7 +3,7 @@
 #include <sys/time.h>
 #include <time.h>
 #include <math.h>
-
+#include <cuda_runtime_api.h>
 
 #define DataType double
 
