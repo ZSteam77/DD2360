@@ -148,8 +148,8 @@ int main(int argc, char **argv) {
     cputimer_start();
     //@@ Insert code to prefetch in Unified Memory asynchronously to the GPU
     gpuCheck(cudaMemPrefetchAsync(A, nzv * sizeof(double), device));
-    gpuCheck(cudaMemPrefetchAsync(&ARowPtr, (dimX + 1) * sizeof(int), device));
-    gpuCheck(cudaMemPrefetchAsync(&AColIndx, nzv * sizeof(int), device));
+    gpuCheck(cudaMemPrefetchAsync(ARowPtr, (dimX + 1) * sizeof(int), device));
+    gpuCheck(cudaMemPrefetchAsync(AColIndx, nzv * sizeof(int), device));
     cputimer_stop("Prefetching GPU memory to the device");
   }
 
@@ -209,7 +209,7 @@ int main(int argc, char **argv) {
   error = norm;
   //@@ Insert the code to call cublas api to compute the norm of temp
   //@@ This calculation corresponds to: || temp ||
-  cublasCheck(cublasDaxpy(cublasHandle, dimX, &alpha, tmp, 1, temp, 1));
+  cublasCheck(cublasDnrm2(cublasHandle, dimX, temp, 1, &norm));
   // Calculate the relative error
   error = error / norm;
   printf("The relative error of the approximation is %f\n", error);

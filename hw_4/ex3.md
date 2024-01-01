@@ -27,5 +27,7 @@
    Norm operation requires 2*dimX FPs
    
    In total there're 7*dimX - 6 FPs per step.
+   
+   With increasing dimX, Flops would obviously increase to a peak value,
 
 2. 
