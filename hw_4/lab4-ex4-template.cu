@@ -127,8 +127,8 @@ int main(int argc, char **argv) {
     cputimer_start();
     //@@ Insert code to prefetch in Unified Memory asynchronously to CPU
     gpuCheck(cudaMemPrefetchAsync(A, nzv * sizeof(double), cudaCpuDeviceId));
-    gpuCheck(cudaMemPrefetchAsync(&ARowPtr, (dimX + 1) * sizeof(int), cudaCpuDeviceId));
-    gpuCheck(cudaMemPrefetchAsync(&AColIndx, nzv * sizeof(int), cudaCpuDeviceId));
+    gpuCheck(cudaMemPrefetchAsync(ARowPtr, (dimX + 1) * sizeof(int), cudaCpuDeviceId));
+    gpuCheck(cudaMemPrefetchAsync(AColIndx, nzv * sizeof(int), cudaCpuDeviceId));
     cputimer_stop("Prefetching GPU memory to the host");
   }
 
